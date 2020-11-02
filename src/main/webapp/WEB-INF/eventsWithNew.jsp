@@ -12,6 +12,9 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="Description" content="Home page"> <!-- Explanation that shows up in search engines goes here.-->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+   <!--  <style>
+    *{outline: 1px solid yellow;}
+    </style> -->
 </head>
 <body>
 	<div class="row">
@@ -21,7 +24,7 @@
 	<!-- -------------Top table-------------- -->
 	<div class="col">
 		<h4>Here are some events in your state:</h4>
-		<table class="table table-bordered table-hover col-8">
+		<table class="table table-bordered table-hover col">
 		    <thead>
 		        <tr>
 		            <th>Name</th>
@@ -33,28 +36,28 @@
 		    </thead>
 		    <tbody>
 		        <c:forEach items="${inStateEvents}" var="event">
-			        <tr>
-			            <td><a href="/events/${event.id}"><c:out value="${event.eventName}"/></a></td>
-			            <td>
+			        <tr >
+			            <td class="mt-3"><a href="/events/${event.id}"><c:out value="${event.eventName}"/></a></td>
+			            <td class="mt-3">
 			            <jsp:useBean id="date" class="java.util.Date"/>
 			            <fmt:formatDate value="${event.eventDate}" type="date" pattern="MMMM dd, yyyy"/>
 			            </td>
-			            <td><c:out value="${event.city}"/></td>
-			            <td><c:out value="${event.eventHost.firstName}"/></td>
-			            <td>
+			            <td class="mt-3"><c:out value="${event.city}"/></td>
+			            <td class="mt-3"><c:out value="${event.eventHost.firstName}"/></td>
+			            <td >
 			            	<c:choose>
 			            		<c:when test="${user == event.eventHost}">
 			            			<a href="/events/${event.id}/edit">Edit</a>
-			            			<form style="display:inline" action="/events/${event.id}/delete" method="post" >
-									    <input type="hidden" name="_method" value="delete">
+			            			<form class="my-0" style="display:inline" action="/events/${event.id}/delete" method="post" >
+									    <input class="mb-2" type="hidden" name="_method" value="delete">
 									    <input type="submit" value="Delete" class="btn btn-link mb-1 ml-2"  >
 									</form>
 			            		</c:when>
 			            		<c:when test="${event.users.contains(user)}">
-			            			Joined <a href="/events/${event.id}/cancel" class="ml-2">Cancel</a>
+			            			Joined <a class="mb-2" href="/events/${event.id}/cancel" class="ml-2">Cancel</a>
 			            		</c:when>
 			            		<c:otherwise>
-			            			<a href="/events/${event.id}/join">Join</a>
+			            			<a class="mb-2" href="/events/${event.id}/join">Join</a>
 			            		</c:otherwise>
 			            	</c:choose>
 			            </td>
@@ -67,7 +70,7 @@
 	
 	
 		<h4>Here are some events in other states:</h4>
-		<table class="table table-bordered table-hover col-8">
+		<table class="table table-bordered table-hover col">
 		    <thead>
 		        <tr>
 		            <th>Name</th>
